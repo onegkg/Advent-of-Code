@@ -1,6 +1,7 @@
 import * as fs from "fs";
 
 const input = fs.readFileSync("./input.txt", "utf-8");
+// const input = "2x3x4";
 
 const lines = input.split("\n");
 
@@ -14,12 +15,12 @@ for (const line of lines) {
   const h = parseInt(dims[0]);
   const w = parseInt(dims[1]);
   const l = parseInt(dims[2]);
-  const s1 = l * w;
-  const s2 = h * w;
-  const s3 = l * h;
-  const lowest = Math.min(s1, s2, s3);
-  const total = 2 * s1 + 2 * s2 + 2 * s3 + lowest;
-  sum += total;
+  const p1 = l + l + w + w;
+  const p2 = w + w + h + h;
+  const p3 = l + l + h + h;
+  const lowest = Math.min(p1, p2, p3);
+  const volume = h * w * l;
+  sum += lowest + volume;
 }
 
 console.log(sum);

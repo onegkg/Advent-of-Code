@@ -1,16 +1,24 @@
-import * as fs from "node:fs";
+import * as fs from "fs";
 
 const grid = new Map<string, boolean>();
 
 const input = fs.readFileSync("./input.txt", "utf-8");
 
+let realSanta = true;
+let rx = 0;
+let ry = 0;
 let x = 0;
 let y = 0;
 
 grid.set("0,0", true);
 
 for (const char of input) {
-  [x, y] = setloc(char, x, y);
+  if (realSanta) {
+    [x, y] = setloc(char, x, y);
+  } else {
+    [rx, ry] = setloc(char, rx, ry);
+  }
+  realSanta = !realSanta;
 }
 
 console.log(grid.size);
