@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import * as fs from "node:fs";
 
 function md5(input: string): string {
   return createHash("md5").update(input, "utf8").digest("hex");
@@ -17,6 +18,6 @@ function findHash(input: string): [number, string] {
   }
 }
 
-const input = "ckczppom";
+const input = fs.readFileSync("./input.txt", "utf-8").trim();
 
 console.log(findHash(input));
